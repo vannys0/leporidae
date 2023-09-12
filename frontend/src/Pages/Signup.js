@@ -7,6 +7,7 @@ import Password from "../Images/password.png";
 import "./LoginSignup.css";
 import Validation from "./SignupValidation.js";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 function Signup() {
   const [values, setValues] = useState({
@@ -30,7 +31,8 @@ function Signup() {
       axios
         .post("http://localhost:3001/signup", values)
         .then((res) => {
-          navigate("/");
+          toast.success("Account created");
+          navigate("/login");
         })
         .catch((err) => console.log(err));
     }

@@ -5,6 +5,7 @@ import Password from "../Images/password.png";
 import "./LoginSignup.css";
 import Validation from "./LoginValidation.js";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function Login() {
   const [values, setValues] = useState({
@@ -28,9 +29,10 @@ function Login() {
         .post("http://localhost:3001/", values)
         .then((res) => {
           if (res.data === "Success") {
+            toast.success("Login successfully");
             navigate("/rehome");
           } else {
-            alert("Incorrect email or password");
+            toast.error("Incorrect Email or Password");
           }
         })
         .catch((err) => console.log(err));
@@ -46,7 +48,7 @@ function Login() {
         <div className="input">
           <img src={Email} alt="" />
           <input
-            type="email"
+            type="text"
             name="email"
             onChange={handleInput}
             placeholder="Email"
